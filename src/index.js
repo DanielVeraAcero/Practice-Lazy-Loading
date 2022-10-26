@@ -1,3 +1,5 @@
+import { registerImage } from "./lazy-loading";
+
 /* 
 <div class="p-4">
     <img class="mx-auto" width="320" src="https://randomfox.ca/images/2.jpg" alt="">
@@ -20,7 +22,7 @@ const createImgNode = () => {
     const image = document.createElement('img');
     image.classList.add('mx-auto');
     image.width = 320;
-    image.src = `https://randomfox.ca/images/${randomFoxNumber()}.jpg`;
+    image.dataset.src = `https://randomfox.ca/images/${randomFoxNumber()}.jpg`;
 
     container.appendChild(image);
 
@@ -30,6 +32,7 @@ const createImgNode = () => {
 const getFox = () => {
     const newImage = createImgNode();
     mountNode.appendChild(newImage);
+    registerImage(newImage);
 }
 
 addButton.addEventListener('click', getFox)
